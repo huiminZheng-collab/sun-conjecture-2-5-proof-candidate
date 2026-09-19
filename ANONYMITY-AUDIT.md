@@ -17,5 +17,7 @@ for visual inspection.  The source package contains no inherited `.git`
 directory, cover letter, referee correspondence, submission-portal metadata,
 or local build auxiliaries.
 
-The final public remote is independently re-cloned and rescanned after push.
-
+The GitHub web interface confirms that the repository is public and displays
+the intended tree and public commit.  A post-push fresh clone was unavailable
+because outbound terminal connections to `github.com:443` timed out; remote
+byte-for-byte verification is therefore partial for this version.
