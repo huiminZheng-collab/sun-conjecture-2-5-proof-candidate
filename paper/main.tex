@@ -1,0 +1,578 @@
+\documentclass[11pt,reqno]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\numberwithin{equation}{section}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Qp}{\mathbb Q_p}
+\newcommand{\vp}{v_p}
+\newcommand{\CT}{\operatorname {CT}}
+
+\title[A multivariate Gauss supercongruence]
+{A multivariate Gauss supercongruence for a Legendrian
+Ap\'ery-like sequence}
+
+\author{Anonymous}
+
+\subjclass[2020]{Primary 11A07; Secondary 05A10, 11B65}
+\keywords{Ap\'ery-like numbers, supercongruence, constant term,
+multinomial coefficient, Jacobsthal congruence}
+
+\begin{document}
+
+\begin{abstract}
+Let
+\[
+G_n=\sum_{k=0}^n4^k
+\binom{2n-2k}{n-k}^{\!2}\binom{2k}{k}.
+\]
+Z.-H. Sun conjectured that
+\[
+G_{mp^r}\equiv G_{mp^{r-1}}\pmod {p^{2r}}
+\]
+for every odd prime \(p\) and all positive integers \(m,r\).
+We prove a multivariate strengthening.  For
+\[
+\begin{split}
+P(x,y)={}&(xy+x-y+1)(xy-x+y+1)\\
+&{}\times(xy+x+y-1)(xy-x-y-1)
+\end{split}
+\]
+and \(C(n;a,b)=[x^ay^b]P(x,y)^n\), we show that
+\[
+C(np^r;ap^r,bp^r)
+\equiv C(np^{r-1};ap^{r-1},bp^{r-1})
+\pmod {p^{2r}}.
+\]
+The proof separates the multinomial expansion into arrays divisible by
+\(p\) and primitive arrays.  Two exponent-balance conditions force at least
+two base-\(p\) carries at every relevant digit level in the primitive
+sector.  The divisible sector is paired with the lower-level expansion
+using the precise Jacobsthal--Kazandzidis congruence.  A constant-term
+representation of \(G_n\) makes Sun's conjecture an immediate corollary.
+It also gives the one-step congruence
+\(G_N\equiv G_{N/p}\pmod {p^{2\vp(N)}}\) whenever \(p\) is an odd prime
+dividing \(N\).
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+Ap\'ery-like sequences arise as integral solutions of recurrence and
+differential equations resembling those in Ap\'ery's proof of the
+irrationality of \(\zeta(2)\) and \(\zeta(3)\); see, for example,
+Zagier's classification \cite{Zagier2009}.  We consider the second-order
+Legendrian sequence
+\begin{equation}\label{eq:Gdef}
+G_n=\sum_{k=0}^n4^k
+\binom{2n-2k}{n-k}^{\!2}\binom{2k}{k}
+\qquad(n\geq0).
+\end{equation}
+Its first terms are
+\[
+G_0=1,\qquad G_1=12,\qquad G_2=164,\qquad G_3=2352.
+\]
+
+In \cite[Conjecture~2.5]{Sun2020}, Z.-H. Sun conjectured that, for every
+odd prime \(p\) and all positive integers \(m,r\),
+\begin{equation}\label{eq:Sun}
+G_{mp^r}\equiv G_{mp^{r-1}}\pmod {p^{2r}}.
+\end{equation}
+The modulus in \eqref{eq:Sun} gains two powers of \(p\) at each dilation.
+Our argument obtains this gain directly and uniformly, without separating
+the first layer from the higher layers.
+
+Gorodetsky found a two-variable constant-term representation for
+\eqref{eq:Gdef}; it appears in Section~5 of the revised arXiv version
+\cite{GorodetskyV2}.  After a quadratic substitution, the representing
+Laurent polynomial factors into four polynomials with coefficients in
+\(\{-1,0,1\}\).  We show that the resulting multinomial expansion satisfies
+an order-two Gauss congruence coefficient by coefficient.
+
+The general Dwork congruences for a Laurent polynomial whose Newton
+polytope has the origin as its unique interior lattice point naturally give
+congruences of order one; see Mellit and Vlasenko \cite{MellitVlasenko}.
+The extra power at every level in the present problem is therefore not a
+formal consequence of that theory.  Straub \cite{Straub2014} proved
+order-two, and in a subfamily order-three, multivariate supercongruences for
+a partition-indexed family of rational functions.  The rational function
+\(1/(1-z\Lambda_G(x,y))\) arising here is not among the displayed members
+of that family, and the balanced four-row coefficient model used below is
+different; hence the present theorem is not a direct specialization of
+Straub's result.
+
+Gorodetsky \cite[(6.2)]{GorodetskyV2} asks whether the Laurent polynomials
+listed in his Proposition~3.3 satisfy coefficient congruences of order two
+or three.  The second-order Legendrian polynomial in
+\cite[(5.2)]{GorodetskyV2} is not one of the polynomials specified in that
+question.  Our result is instead an analogous order-two coefficient
+congruence for this Legendrian polynomial.
+
+Put
+\begin{equation}\label{eq:Pdef}
+\begin{split}
+P(x,y)={}&(xy+x-y+1)(xy-x+y+1)\\
+&{}\times(xy+x+y-1)(xy-x-y-1)
+\end{split}
+\end{equation}
+and define
+\[
+C(n;a,b)=[x^ay^b]P(x,y)^n
+\qquad(n,a,b\geq0).
+\]
+For later use, we set \(C(n;a,b)=0\) if \(a<0\) or \(b<0\).
+Our main result is the following.
+
+\begin{theorem}\label{thm:multi}
+Let \(p\) be an odd prime, \(r\geq1\), and \(n,a,b\geq0\).  Then
+\begin{equation}\label{eq:multi}
+C(np^r;ap^r,bp^r)
+\equiv C(np^{r-1};ap^{r-1},bp^{r-1})
+\pmod {p^{2r}}.
+\end{equation}
+\end{theorem}
+
+Theorem~\ref{thm:multi} proves more than a diagonal congruence: its Laurent
+form is precisely the corresponding family of multivariate congruences.
+
+\begin{corollary}\label{cor:Sun}
+Z.-H. Sun's congruence \eqref{eq:Sun} holds for every odd prime \(p\) and
+all positive integers \(m,r\).
+\end{corollary}
+
+The proof is elementary and \(p\)-adic, relying only on multinomial
+valuations and the classical Jacobsthal--Kazandzidis congruence; no
+Dwork-theoretic machinery is required.
+
+\section{The constant-term representation}
+
+We first derive the representation directly from \eqref{eq:Gdef}.  Set
+\[
+B(t)=\sum_{n\geq0}\binom{2n}{n}^{\!2}t^n
+={}_2F_1\left(\frac12,\frac12;1;16t\right).
+\]
+The convolution in \eqref{eq:Gdef} gives
+\begin{equation}\label{eq:GFfirst}
+\sum_{n\geq0}G_nt^n=\frac{B(t)}{\sqrt{1-16t}}.
+\end{equation}
+Pfaff's transformation yields
+\[
+B(t)=\frac1{\sqrt{1-16t}}\,
+B\left(\frac{-t}{1-16t}\right).
+\]
+Substitution in \eqref{eq:GFfirst} and extraction of the coefficient of
+\(t^n\) give
+\begin{equation}\label{eq:alternating}
+G_n=\sum_{k=0}^n(-1)^k16^{n-k}
+\binom nk\binom{2k}{k}^{\!2}.
+\end{equation}
+Since
+\[
+\CT_x(x+2+x^{-1})^k=\binom{2k}{k},
+\]
+equation \eqref{eq:alternating} is equivalent to
+\begin{equation}\label{eq:CTsimple}
+G_n=\CT_{x,y}
+\left(16-(x+2+x^{-1})(y+2+y^{-1})\right)^n.
+\end{equation}
+
+Changing \(x,y\) to \(-x,-y\) in \eqref{eq:CTsimple} gives the Laurent
+polynomial recorded in \cite[(5.2)]{GorodetskyV2}:
+\begin{equation}\label{eq:LambdaG}
+\Lambda_G(x,y)=(-xy)^{-1}
+\left(x^2y^2-2x^2y-2xy^2+x^2-12xy+y^2-2x-2y+1\right).
+\end{equation}
+Thus
+\[
+G_n=\CT\Lambda_G(x,y)^n.
+\]
+
+Let
+\[
+A=(x-x^{-1})(y-y^{-1}).
+\]
+A direct calculation gives
+\[
+\Lambda_G(x^2,y^2)=16-A^2=-\frac{P(x,y)}{x^2y^2},
+\]
+because
+\[
+\begin{split}
+xy(4+A)&=(xy+x-y+1)(xy-x+y+1),\\
+xy(4-A)&=-(xy+x+y-1)(xy-x-y-1).
+\end{split}
+\]
+Substitution by \(x^2,y^2\) does not change a constant term.  Consequently
+\begin{equation}\label{eq:Gcoefficient}
+G_n=(-1)^n[x^{2n}y^{2n}]P(x,y)^n
+=(-1)^nC(n;2n,2n).
+\end{equation}
+
+\section{Balanced arrays and two forced carries}
+
+Fix nonnegative integers \(N,A,B\).  Expand each of the four factors in
+\eqref{eq:Pdef} to the \(N\)th power.  For the \(i\)th factor let
+\[
+q_i=(a_i,b_i,c_i,d_i),\qquad
+a_i+b_i+c_i+d_i=N,
+\]
+where the four entries record the multiplicities of \(xy,x,y,1\),
+respectively.  A four-row array
+\[
+q=(q_1,q_2,q_3,q_4)
+\]
+contributes to \(C(N;A,B)\) precisely when
+\begin{equation}\label{eq:balances}
+\sum_{i=1}^4(a_i+b_i)=A,\qquad
+\sum_{i=1}^4(a_i+c_i)=B.
+\end{equation}
+We call such an array admissible.  The absolute value of its contribution is
+\begin{equation}\label{eq:PN}
+P_N(q)=\prod_{i=1}^4
+\binom{N}{a_i,b_i,c_i,d_i}.
+\end{equation}
+The sign is a parity character in the entries of \(q\).  Explicitly, the
+four factors in \eqref{eq:Pdef} contribute the sign exponents
+\[
+c_1,\qquad b_2,\qquad d_3,\qquad b_4+c_4+d_4.
+\]
+It follows that multiplication of all entries by an odd integer preserves
+the sign.
+
+\begin{lemma}\label{lem:primitive}
+Let \(p\) be a prime, let \(R\geq0\), and suppose that \(p^R\) divides
+each of \(N,A,B\).
+If \(q\) is an admissible array not all of whose entries are divisible by
+\(p\), then
+\[
+\vp(P_N(q))\geq2R.
+\]
+\end{lemma}
+
+\begin{proof}
+The assertion is immediate when \(R=0\), so assume \(R\geq1\).
+Fix \(1\leq j\leq R\) and put \(M=p^j\).  Replace each of the sixteen
+entries of \(q\) by its least residue in \([0,M-1]\).  Let the four column
+totals of these residues be \(X,Y,Z,W\), in the order corresponding to
+\(a,b,c,d\), and write
+\[
+X+Y+Z+W=MT_j.
+\]
+Each row sum is congruent to \(N\), hence to zero, modulo \(M\), so
+\(T_j\) is a nonnegative integer.  It is positive because at least one
+entry of \(q\) is not divisible by \(p\).
+
+We show that \(T_j\neq1\).  Suppose otherwise.  Then the total residue mass
+is \(M\).  The two balances \eqref{eq:balances} give
+\[
+X+Y\equiv X+Z\equiv0\pmod M.
+\]
+Both \(X+Y\) and \(X+Z\) lie between \(0\) and \(M\), and hence each is
+either \(0\) or \(M\).  Considering the four possible pairs of values shows
+that all residue mass must lie in one column:
+\[
+(X,Y,Z,W)\in
+\{(M,0,0,0),(0,M,0,0),(0,0,M,0),(0,0,0,M)\}.
+\]
+On the other hand, every row residue sum is a multiple of \(M\), and the
+total of the four row sums is \(M\).  Thus exactly one row has residue sum
+\(M\).  Since the mass lies in a single column, one least residue would
+equal \(M\), a contradiction.  Therefore \(T_j\geq2\).
+
+More explicitly, Legendre's formula gives the level-\(j\) contribution to
+the valuation of the product in \eqref{eq:PN} as
+\[
+ \sum_{i=1}^4\left(\left\lfloor\frac{N}{M}\right\rfloor
+ -\sum_{\alpha\in\{a,b,c,d\}}
+  \left\lfloor\frac{q_{i,\alpha}}{M}\right\rfloor\right)
+ =\frac{X+Y+Z+W}{M}=T_j.
+\]
+All contributions for \(j>R\) are nonnegative.  Hence
+\[
+\vp(P_N(q))\geq\sum_{j=1}^RT_j\geq2R.
+\]
+\end{proof}
+
+\begin{remark}
+The lower bound is sharp.  When \(N=p^R\) and \(A=B=2N\), the rows
+\[
+(0,0,0,N),\quad(0,0,1,N-1),\quad
+(N-1,1,0,0),\quad(N,0,0,0)
+\]
+form an admissible array with total valuation \(2R\).
+\end{remark}
+
+\section{Scaled multinomial coefficients}
+
+We use the following consequence of the Jacobsthal--Kazandzidis
+congruence.  The quotient congruences in this section are interpreted in
+\(\Qp\): thus \(X\equiv Y\pmod {p^e}\) means
+\(\vp(X-Y)\geq e\).
+
+\begin{lemma}\label{lem:Jacobsthal}
+Let \(p\) be an odd prime, \(s\geq0\), and let
+\(\boldsymbol{v}=(v_1,\ldots,v_t)\) be a weak composition (zero parts are
+allowed).  Then
+\begin{equation}\label{eq:multiJacob}
+\frac{\binom{p^{s+1}|\boldsymbol v|}
+ {p^{s+1}v_1,\ldots,p^{s+1}v_t}}
+ {\binom{p^s|\boldsymbol v|}
+ {p^sv_1,\ldots,p^sv_t}}
+\equiv1\pmod {p^{2s+2}}.
+\end{equation}
+The numerator and denominator in \eqref{eq:multiJacob} have the same
+\(p\)-adic valuation.
+\end{lemma}
+
+\begin{proof}
+Decompose each multinomial coefficient into \(t-1\) binomial coefficients.
+Trivial factors produced by zero parts are omitted.
+For a nontrivial resulting factor, apply the classical congruence
+\begin{equation}\label{eq:Jacob}
+\frac{\binom{pn}{pm}}{\binom nm}
+\equiv1\pmod {p^{\vp(nm(n-m))+3-\delta_{p,3}}},
+\end{equation}
+where \(\delta_{p,3}=1\) for \(p=3\) and zero otherwise; see
+\cite{Jacobsthal1952}, \cite[p.~255]{Granville1997}, or
+\cite[Lemma~4.1]{Gorodetsky2023}.
+In the present application, \(n,m,n-m\) contain the common factor \(p^s\).
+The exponent in \eqref{eq:Jacob} is therefore at least \(3s+2\) for \(p=3\)
+and at least \(3s+3\) for \(p\geq5\).  Both bounds are at least \(2s+2\),
+so multiplication proves \eqref{eq:multiJacob}.
+
+The valuation assertion follows from Legendre's digit-sum formula:
+multiplication of all arguments by \(p\) merely shifts their base-\(p\)
+digits.
+\end{proof}
+
+\section{Proof of the multivariate congruence}
+
+We prove a slightly stronger one-step statement.
+
+\begin{theorem}\label{thm:strong}
+Let \(p\) be an odd prime, and let \(N,A,B\geq0\) be not all zero.
+Suppose that \(p\) divides each of \(N,A,B\), and put
+\[
+R=\min\{\vp(N),\vp(A),\vp(B)\},
+\]
+with the convention \(\vp(0)=+\infty\).  Then
+\begin{equation}\label{eq:strong}
+C(N;A,B)\equiv C(N/p;A/p,B/p)\pmod {p^{2R}}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+If \(N=0\), then \(A+B>0\), and both coefficients in
+\eqref{eq:strong} are zero.  We may therefore assume \(N>0\); in
+particular, \(R\geq1\).
+Split the admissible arrays contributing to \(C(N;A,B)\) into two classes.
+By Lemma~\ref{lem:primitive}, every array not wholly divisible by \(p\)
+contributes zero modulo \(p^{2R}\).
+
+Every array in the other class is uniquely \(q=pu\), where \(u\) is
+admissible for \(C(N/p;A/p,B/p)\).  This gives a bijection with all arrays
+in the lower expansion, and the signs agree because \(p\) is odd.
+
+Let
+\[
+s=\min_{i,\alpha}\vp(u_{i,\alpha}),
+\]
+where zero entries have infinite valuation, and write \(u=p^sv\).
+At least one of \(N/p,A/p,B/p\) has exact valuation \(R-1\), so
+\(0\leq s\leq R-1\).  The array \(v\) is primitive, and its three
+parameters are all divisible by \(p^{R-1-s}\).  Common scaling does not
+change a multinomial valuation.  Lemma~\ref{lem:primitive} therefore gives
+\begin{equation}\label{eq:lowerVal}
+\vp(P_{N/p}(u))\geq2(R-1-s).
+\end{equation}
+
+Apply Lemma~\ref{lem:Jacobsthal} to each of the four rows and multiply the
+four \(p\)-adic unit quotients.  We obtain
+\begin{equation}\label{eq:ratio}
+\frac{P_N(pu)}{P_{N/p}(u)}
+\equiv1\pmod {p^{2s+2}}.
+\end{equation}
+Equations \eqref{eq:lowerVal} and \eqref{eq:ratio} imply
+\[
+\vp\bigl(P_N(pu)-P_{N/p}(u)\bigr)
+\geq2(R-1-s)+2s+2=2R.
+\]
+Thus every paired divisible term agrees modulo \(p^{2R}\).  Adding these
+terms and the primitive terms proves \eqref{eq:strong}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:multi}]
+Apply Theorem~\ref{thm:strong} with
+\[
+(N,A,B)=(np^r,ap^r,bp^r).
+\]
+If \(n=a=b=0\), both coefficients in \eqref{eq:multi} are one; otherwise
+the minimum valuation is at least \(r\).
+\end{proof}
+
+\section{Laurent form and Sun's conjecture}
+
+Set
+\[
+\Lambda(x,y)=-\frac{P(x,y)}{x^2y^2}.
+\]
+For \(n\geq0\) and \(h,k\in\Z\), define
+\[
+D(n;h,k)=\CT\bigl(\Lambda(x,y)^n x^hy^k\bigr).
+\]
+Theorem~\ref{thm:multi} is equivalent to
+\begin{equation}\label{eq:LaurentMulti}
+D(np^r;hp^r,kp^r)
+\equiv D(np^{r-1};hp^{r-1},kp^{r-1})
+\pmod {p^{2r}}.
+\end{equation}
+Indeed,
+\[
+D(n;h,k)=(-1)^nC(n;2n-h,2n-k),
+\]
+where the convention following the definition of \(C\) is used.  The two
+signs agree under dilation by an odd prime.  If both ordinary-polynomial
+indices are nonnegative, Theorem~\ref{thm:multi} applies directly, whether
+or not the coefficient happens to vanish.  If either index is negative,
+the corresponding index remains negative after dilation, so both sides of
+\eqref{eq:LaurentMulti} are zero.
+
+\begin{proof}[Proof of Corollary~\ref{cor:Sun}]
+By \eqref{eq:Gcoefficient},
+\[
+G_n=(-1)^nC(n;2n,2n).
+\]
+Apply Theorem~\ref{thm:multi} with
+\[
+(n,a,b)=(m,2m,2m).
+\]
+The signs at levels \(r\) and \(r-1\) agree because \(p\) is odd, and
+\eqref{eq:Sun} follows.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:strong} also yields the stronger one-step form
+\[
+G_N\equiv G_{N/p}\pmod {p^{2\vp(N)}}
+\]
+for every odd prime \(p\mid N\).
+\end{remark}
+
+\section{Computational checks}
+
+The proof above is independent of computation.  Exact integer programs were
+nevertheless used to check the transformations and boundary cases.
+The original convolution \eqref{eq:Gdef}, the alternating formula
+\eqref{eq:alternating}, and the signed four-factor expansion were computed
+through independent code paths.  A min-plus enumeration found the sharp
+minimum \(2R\) in five primitive-sector regimes.  Finally, all scaled
+coefficient pairs were checked in the eight regimes
+\[
+\begin{split}
+(p,r,n)\in\{&(3,1,1),(3,1,2),(3,2,1),(3,2,2),\\
+&(5,1,1),(5,1,2),(5,2,1),(7,1,1)\}.
+\end{split}
+\]
+All 368 coefficient congruences passed.
+The four exact verification programs used for these checks are supplied in
+the public repository accompanying this manuscript; they are not part of the
+logical proof.
+
+\newpage
+\section*{Statements and declarations}
+
+\noindent\textbf{Funding.}
+No funding was received to assist with the preparation of this manuscript.
+
+\smallskip
+\noindent\textbf{Competing interests.}
+The author has no relevant financial or non-financial interests to disclose.
+
+\smallskip
+\noindent\textbf{Data availability.}
+No datasets were generated or analysed during the current study.
+
+\smallskip
+\noindent\textbf{Code availability.}
+The exact verification programs are provided in the public repository
+accompanying this manuscript.
+
+\smallskip
+\noindent\textbf{Use of generative AI.}
+The proof presented in this article was found by OpenAI Codex.
+
+\footnotesize
+\begin{thebibliography}{99}
+
+\bibitem{Gorodetsky2023}
+O. Gorodetsky,
+\emph{New representations for all sporadic Ap\'ery-like sequences, with
+applications to congruences},
+Exp. Math. \textbf{32} (2023), no.~4, 641--656.
+\url{https://doi.org/10.1080/10586458.2021.1982080}.
+
+\bibitem{GorodetskyV2}
+O. Gorodetsky,
+\emph{New representations for all sporadic Ap\'ery-like sequences, with
+applications to congruences},
+arXiv:2102.11839v2 (2025).
+\url{https://arxiv.org/abs/2102.11839v2}.
+
+\bibitem{Granville1997}
+A. Granville,
+\emph{Arithmetic properties of binomial coefficients. I. Binomial
+coefficients modulo prime powers},
+in: Organic Mathematics (Burnaby, BC, 1995), CMS Conf. Proc. \textbf{20},
+Amer. Math. Soc., Providence, RI, 1997, 253--276.
+
+\bibitem{Jacobsthal1952}
+V. Brun, J. O. Stubban, J. E. Fjeldstad, R. Tambs Lyche, K. E. Aubert,
+W. Ljunggren and E. Jacobsthal,
+\emph{On the divisibility of the difference between two binomial
+coefficients},
+in: Den 11te Skandinaviske Matematikerkongress, Trondheim, 1949,
+Johan Grundt Tanums Forlag, Oslo, 1952, 42--54.
+
+\bibitem{MellitVlasenko}
+A. Mellit and M. Vlasenko,
+\emph{Dwork's congruences for the constant terms of powers of a Laurent
+polynomial},
+Int. J. Number Theory \textbf{12} (2016), no.~2, 313--321.
+\url{https://doi.org/10.1142/S1793042116500184}.
+
+\bibitem{Straub2014}
+A. Straub,
+\emph{Multivariate Ap\'ery numbers and supercongruences of rational
+functions},
+Algebra Number Theory \textbf{8} (2014), no.~8, 1985--2008.
+\url{https://doi.org/10.2140/ant.2014.8.1985}.
+
+\bibitem{Sun2020}
+Z.-H. Sun,
+\emph{New congruences involving Ap\'ery-like numbers},
+arXiv:2004.07172v2 (2020).
+\url{https://arxiv.org/abs/2004.07172v2}.
+
+\bibitem{Zagier2009}
+D. Zagier,
+\emph{Integral solutions of Ap\'ery-like recurrence equations},
+in: Groups and Symmetries, CRM Proc. Lecture Notes \textbf{47},
+Amer. Math. Soc., Providence, RI, 2009, 349--366.
+
+\end{thebibliography}
+\normalsize
+
+\end{document}
