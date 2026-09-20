@@ -33,9 +33,12 @@ The programs require Python 3.10 or later and use only the standard library.
 
 ## Status and provenance
 
-This is version 0.1 of the public proof-candidate release.  The manuscript is
-derived from the canonical journal-submission version frozen on 28 August
-2026.  This repository is public dissemination, not a journal submission.
+Version 0.3 is a writing-focused revision dated 20 September 2026.  It
+reorganizes the introduction around the source of the second power of p,
+states the relation to existing Dwork and multivariate frameworks more
+precisely, and adds signposts at the two decisive valuation steps.  The
+theorem and proof mechanism are unchanged.  This repository is public
+dissemination, not a journal submission.
 
 The public payload was assembled in a new staging directory, without the
 submission correspondence, cover letter, portal metadata, or inherited Git

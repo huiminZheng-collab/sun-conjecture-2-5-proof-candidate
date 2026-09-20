@@ -71,11 +71,13 @@ dividing \(N\).
 
 \section{Introduction}
 
-Ap\'ery-like sequences arise as integral solutions of recurrence and
-differential equations resembling those in Ap\'ery's proof of the
-irrationality of \(\zeta(2)\) and \(\zeta(3)\); see, for example,
-Zagier's classification \cite{Zagier2009}.  We consider the second-order
-Legendrian sequence
+Ap\'ery-like sequences sit at a meeting point of binomial identities,
+differential equations, modular parametrizations, and arithmetic
+congruences.  A recurring phenomenon is that their coefficients satisfy
+congruences substantially stronger than those forced by an arbitrary
+integral generating function.  Explaining the extra powers of a prime is
+often the central difficulty.  We consider the second-order Legendrian
+sequence in Zagier's classification \cite{Zagier2009},
 \begin{equation}\label{eq:Gdef}
 G_n=\sum_{k=0}^n4^k
 \binom{2n-2k}{n-k}^{\!2}\binom{2k}{k}
@@ -91,37 +93,31 @@ odd prime \(p\) and all positive integers \(m,r\),
 \begin{equation}\label{eq:Sun}
 G_{mp^r}\equiv G_{mp^{r-1}}\pmod {p^{2r}}.
 \end{equation}
-The modulus in \eqref{eq:Sun} gains two powers of \(p\) at each dilation.
-Our argument obtains this gain directly and uniformly, without separating
-the first layer from the higher layers.
+The modulus gains two powers of \(p\) at every dilation.  This is the feature
+that needs explanation: a first-order Gauss congruence would account for only
+one new power.  Our proof identifies a finite combinatorial mechanism for the
+second power.  Gorodetsky's two-variable constant-term representation
+\cite[Sec.~5]{GorodetskyV2}, after a quadratic substitution, factors into
+four signed linear forms.  In the associated multinomial expansion, the two
+independent exponent balances force two base-\(p\) carries at each relevant
+digit level.  The primitive terms therefore already contain the full modulus;
+the remaining terms pair with the preceding level by the
+Jacobsthal--Kazandzidis congruence.
 
-Gorodetsky found a two-variable constant-term representation for
-\eqref{eq:Gdef}; it appears in Section~5 of the revised arXiv version
-\cite{GorodetskyV2}.  After a quadratic substitution, the representing
-Laurent polynomial factors into four polynomials with coefficients in
-\(\{-1,0,1\}\).  We show that the resulting multinomial expansion satisfies
-an order-two Gauss congruence coefficient by coefficient.
+This viewpoint places the result near, but not inside, two established
+frameworks.  The general Dwork congruences of Mellit and Vlasenko
+\cite{MellitVlasenko} naturally give first-order congruences when the Newton
+polytope has a unique interior lattice point; they do not formally supply the
+extra power needed here.  Straub \cite{Straub2014} proved second-order, and
+in a subfamily third-order, multivariate supercongruences for a
+partition-indexed family of rational functions.  The rational function
+\(1/(1-z\Lambda_G(x,y))\) below is not a displayed member of that family,
+and our balanced four-row coefficient model has a different combinatorial
+source.  Thus neither result gives \eqref{eq:Sun} by specialization.
 
-The general Dwork congruences for a Laurent polynomial whose Newton
-polytope has the origin as its unique interior lattice point naturally give
-congruences of order one; see Mellit and Vlasenko \cite{MellitVlasenko}.
-The extra power at every level in the present problem is therefore not a
-formal consequence of that theory.  Straub \cite{Straub2014} proved
-order-two, and in a subfamily order-three, multivariate supercongruences for
-a partition-indexed family of rational functions.  The rational function
-\(1/(1-z\Lambda_G(x,y))\) arising here is not among the displayed members
-of that family, and the balanced four-row coefficient model used below is
-different; hence the present theorem is not a direct specialization of
-Straub's result.
+The natural statement revealed by the constant-term representation is
+stronger than Sun's diagonal congruence.  Put
 
-Gorodetsky \cite[(6.2)]{GorodetskyV2} asks whether the Laurent polynomials
-listed in his Proposition~3.3 satisfy coefficient congruences of order two
-or three.  The second-order Legendrian polynomial in
-\cite[(5.2)]{GorodetskyV2} is not one of the polynomials specified in that
-question.  Our result is instead an analogous order-two coefficient
-congruence for this Legendrian polynomial.
-
-Put
 \begin{equation}\label{eq:Pdef}
 \begin{split}
 P(x,y)={}&(xy+x-y+1)(xy-x+y+1)\\
@@ -146,16 +142,32 @@ C(np^r;ap^r,bp^r)
 \end{theorem}
 
 Theorem~\ref{thm:multi} proves more than a diagonal congruence: its Laurent
-form is precisely the corresponding family of multivariate congruences.
+form controls every coefficient on a simultaneously dilated lattice.  It is
+an order-two coefficient congruence for the Legendrian polynomial occurring
+in \cite[(5.2)]{GorodetskyV2}, analogous in spirit to the questions raised in
+\cite[(6.2)]{GorodetskyV2} but not covered by the list in that question.
 
 \begin{corollary}\label{cor:Sun}
 Z.-H. Sun's congruence \eqref{eq:Sun} holds for every odd prime \(p\) and
 all positive integers \(m,r\).
 \end{corollary}
 
-The proof is elementary and \(p\)-adic, relying only on multinomial
-valuations and the classical Jacobsthal--Kazandzidis congruence; no
-Dwork-theoretic machinery is required.
+The proof has two complementary halves.  For an array in the multinomial
+expansion that is not divisible by \(p\), Legendre's formula converts its
+valuation into a sum of carry counts.  The row sums and the two exponent
+balances rule out a single carry, giving at least two at every digit level.
+For an array divisible by \(p\), division by \(p\) produces exactly one term
+at the preceding level; the Jacobsthal--Kazandzidis quotient supplies the
+remaining precision after the common \(p\)-power has been removed.  The two
+valuation contributions add to \(2r\) independently of the depth.  This is
+why no separate induction on exceptional low layers is needed.
+
+Section~2 derives the constant-term model directly from the defining
+convolution.  Section~3 proves the two-carry lemma, Section~4 records the
+scaled multinomial estimate, and Section~5 combines them into the
+multivariate theorem.  Section~6 returns to the Laurent polynomial and
+deduces Sun's conjecture.  The final section records exact computations used
+only as checks; the proof itself is independent of computation.
 
 \section{The constant-term representation}
 
@@ -251,6 +263,14 @@ c_1,\qquad b_2,\qquad d_3,\qquad b_4+c_4+d_4.
 \]
 It follows that multiplication of all entries by an odd integer preserves
 the sign.
+
+The next lemma is the source of the exponent \(2R\).  At a fixed base-\(p\)
+level, the residue mass of a primitive array cannot be concentrated in a
+single carry: the two balances would force that mass into one column, while
+the row sums would force it into one row, contradicting the choice of least
+residues.  Thus every level contributes at least two carries.  We give the
+full argument because this small rigidity statement is the only place where
+the special four-factor geometry of \(P\) enters the valuation estimate.
 
 \begin{lemma}\label{lem:primitive}
 Let \(p\) be a prime, let \(R\geq0\), and suppose that \(p^R\) divides
@@ -382,6 +402,11 @@ Split the admissible arrays contributing to \(C(N;A,B)\) into two classes.
 By Lemma~\ref{lem:primitive}, every array not wholly divisible by \(p\)
 contributes zero modulo \(p^{2R}\).
 
+It remains to compare the wholly divisible arrays term by term with the
+lower-level expansion.  The following bookkeeping is arranged so that the
+valuation already present in the lower term and the precision of its scaling
+quotient add to exactly \(2R\).
+
 Every array in the other class is uniquely \(q=pu\), where \(u\) is
 admissible for \(C(N/p;A/p,B/p)\).  This gives a bijection with all arrays
 in the lower expansion, and the signs agree because \(p\) is odd.
@@ -507,8 +532,9 @@ No datasets were generated or analysed during the current study.
 
 \smallskip
 \noindent\textbf{Code availability.}
-The exact verification programs are provided in the public repository
-accompanying this manuscript.
+The exact verification programs are provided at
+the \href{https://github.com/huiminZheng-collab/sun-conjecture-2-5-proof-candidate}
+{public GitHub repository}.
 
 \smallskip
 \noindent\textbf{Use of generative AI.}
